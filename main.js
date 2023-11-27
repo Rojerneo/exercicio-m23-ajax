@@ -5,13 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const repository = document.querySelector('#repository');
     const followers = document.querySelector('#followers');
     const following = document.querySelector('#following');
-    const profileLink = document.querySelector('#link')
+    const profileLink = document.querySelector('#link');
 
     fetch('https://api.github.com/users/rojerneo')
     .then(function(res) {
         return res.json();
     })
-
     .then(function(json) {
         profileAvatar.src = json.avatar_url;
         profileName.innerHTML = json.name;
@@ -20,5 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
         followers.innerHTML = json.followers;
         following.innerHTML = json.following;
         profileLink.href = json.html_url;
+    })
+    .catch(function(erro) {
+        alert("Ocorreu um erro ao obter as informações. Por favor, tente novamente mais tarde.")
     })
 })
